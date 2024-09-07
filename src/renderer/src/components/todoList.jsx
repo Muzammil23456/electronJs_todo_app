@@ -13,7 +13,7 @@ import {
 } from "../reduxToolkit/features/todoList/todoListSlice";
 
 export default function TodoList() {
-  const todoList = useSelector((state) => state.todoList.todoList);
+  const todoList = useSelector((state) => state.todoList.todoList) || [];
   const [edit, setEdit] = useState("");
   const [task, setTask] = useState("");
   const dispatch = useDispatch();
@@ -39,10 +39,10 @@ export default function TodoList() {
       <div className="w-full h-full overflow-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:border-gray-700">
         <div>
           <ul className="my-4 space-y-3">
-            {todoList && todoList.length === 0 ? (
+            {todoList.length === 0 ? (
               <div className="text-center">No task found</div>
             ) : (
-             todoList && todoList.map((item, index) => (
+              todoList.map((item, index) => (
                 <li key={index}>
                   <div className="flex  p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow dark:bg-gray-600 dark:hover:bg-gray-500 dark:text-white">
                     <div className="flex-1 gap-2 ms-3 whitespace-nowrap flex justify-between ">

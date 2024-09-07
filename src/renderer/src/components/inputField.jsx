@@ -8,12 +8,13 @@ import PropTypes from "prop-types";
 
 export default function InputField() {
   const [task, setTask] = useState("");
-  const todoList = useSelector((state) => state.todoList.todoList);
+
+  const todoList = useSelector((state) => state.todoList.todoList) || [];
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addTodo(task));
-    localStorage.setItem("todoList", JSON.stringify([...todoList,task]));
+    localStorage.setItem("todoList", JSON.stringify([...todoList, task]));
     setTask("");
   };
   return (
@@ -49,4 +50,3 @@ export default function InputField() {
     </>
   );
 }
-
