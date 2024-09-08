@@ -1,16 +1,16 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo } from "../reduxToolkit/features/todoList/todoListSlice";
 import PropTypes from "prop-types";
 
 export default function InputField() {
   const [task, setTask] = useState("");
-
-  const todoList = useSelector((state) => state.todoList.todoList) || [];
   const dispatch = useDispatch();
+  const { todoList } = useSelector((state) => state.todoList);
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addTodo(task));
